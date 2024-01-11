@@ -1,0 +1,89 @@
+﻿@model HLTClothes.Models.Cart
+
+@{
+    ViewBag.Title = "ShowtoCart";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@if(Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sum</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Items)
+            {
+                double total = Convert.ToDouble(item.ProductShopping.Price.Value * item.ShoppingQuantity);
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.ProductShopping.ProductName)
+                    </td>
+                    <td>
+                        <img src="~/Images/@item.ProductShopping.ImageUrl" style="width:100px; height:100px;" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.ProductShopping.Price)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("UpdateQuantityCart", "ShoppingCart"))
+                        {
+                            <input type="hidden" value="@item.ProductShopping.ProductID" name="ProductID" />
+                            <input type="number" value="@item.ShoppingQuantity" name="Quantity" />
+                            <input type="submit" value="Update Quantity" />
+                        }
+
+                    </td>
+                    <td>
+                        Total: @total
+                    </td>
+                    <td>
+                        <a href="/shoppingcart/removecart/@item.ProductShopping.ProductID"><i class="fa fa-trash btn btn-dark" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                    {
+                        <table>
+                            <tr>
+                                <td>Phone number:</td>
+                                <td>
+                                    <input type="text" name="Phone" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td>
+                                    <input type="text" name="Address" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="CheckOut" class="btn btn-success" />
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" style="text-align:right">
+                    Price All: @Model.MoneyTotal()
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+

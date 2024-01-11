@@ -1,0 +1,46 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
+    <div class="container-fluid">
+        <a href="/home/index" class="navbar-brand"><img src="~/Images/vecteezy_simple-minimalist-hanger-for-shirt-clothing-apparel-logo_5358250.jpg" style="width:50px; height:50px" /></a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="/product/index" class="nav-item nav-link">PRODUCTS</a>
+                <a href="/home/aboutus" class="nav-item nav-link">ABOUT US</a>
+            </div>
+
+            <div class="navbar-nav">
+                <form class="d-flex" action="/product/index">
+                    <div class="input-group">
+                        <input type="text" name="Search" class="form-control" placeholder="Find something ...">
+                        <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+
+
+                
+                @if (User.Identity.IsAuthenticated)
+                {
+                        <a href="/ShoppingCart/ShowToCart" class="nav-item nav-link">
+                            <i class="fa fa-shopping-bag" aria-hidden="true"></i> Store
+                        </a>
+                        <a href="/account/profile/@User.Identity" class="nav-item nav-link fw-bold">@User.Identity.Name</a>
+                        <a href="/account/logout" class="nav-item nav-link">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                        </a>
+                        }
+                        else
+                        {
+                        <a href="/account/login" class="nav-item nav-link">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> Login
+                        </a>
+                        <a href="/account/register" class="nav-item nav-link">
+                            <i class="fa fa-user" aria-hidden="true"></i> Register
+                        </a>
+
+                        }
+                </div>
+        </div>
+    </div>
+</nav>

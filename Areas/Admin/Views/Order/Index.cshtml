@@ -1,0 +1,54 @@
+﻿@model List<HLTClothes.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Order List</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <button type="button" id="GetOrders" class="btn btn-dark text-white">Get Orders</button>
+            <a href="/admin/order" class="btn btn-info">Get order from database</a>
+            <table class="table orderTable table-bordered">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                    <th>Order Date</th>
+                    <th>Manage</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.OrderID</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Address</td>
+                        <td>@item.OrderDate</td>
+                        <td><a href="/admin/order/detail/@item.OrderID" class="btn btn-info">Detail</a></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#GetOrders').click(() => {
+        $('.orderTable').empty();
+        $('.orderTable').append('<tr><th>OrderID</th><th>Mobile</th><th>Address</th><th>Order Date</th>')
+        $.ajax({
+            type: 'GET',
+            url: '/api/orders',
+            success: (responses) => {
+                for (var i = 0; i <= responses.length; i++) {
+                    const orderRow = responses[i];
+                    const strHtml = '<tr><td>' + orderRow.OrderID + '</td><td>' + orderRow.Phone + '</td><td>' + orderRow.Address + '</td><td>' + orderRow.OrderDate + '</td><tr>';
+                    $('.orderTable').append(strHtml);   
+                }
+            },
+            error: (err) => { console.log(err); }
+        });
+    });
+</script>
+

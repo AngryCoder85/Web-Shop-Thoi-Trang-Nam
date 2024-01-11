@@ -1,0 +1,65 @@
+﻿@model List<HLTClothes.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10" id="colhidden">
+        </div>
+        <div class="col-md-auto col-sm-auto">
+            <select class="form-control" id="sortform" name="sortform">
+                <option selected>Chọn một</option>
+                <option value="PriceProDESC">Giá giảm dần</option>
+                <option value="PriceProASC">Giá tăng dần</option>
+                <option value="NewUpload">Ngày đăng mới nhất</option>
+                <option value="PrdNameASC">Tên A - Z</option>
+                @foreach(var item in ViewBag.Category)
+                {
+                    <option value="@item.CategoryName">@item.CategoryName</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-6">
+                <a href="/product/detail/@item.ProductID" style="text-decoration:none">
+                    <div class="card w-100 border-0">
+                        <img src="~/Images/@item.ImageUrl" class="card-img-top img-fluid" alt="">
+                        <div class="card-body text-center">
+                            <h4 class="card-title text-black">@item.ProductName</h4>
+                            <p class="card-text text-black">@item.Price</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-12 w-25 mx-auto">
+            <ul class="pagination justify-content-center">
+                @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="/product/index?search&trang=@(i+1)">
+                            @(i + 1)
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('#sortform').change(function () {
+        var value = $('#sortform').val();
+        window.location.href = "/product/index?sort=" + value;
+    });
+
+</script>
+

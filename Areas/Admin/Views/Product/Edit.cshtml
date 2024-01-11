@@ -1,0 +1,82 @@
+﻿@model HLTClothes.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container-fluid">
+    <form action="/admin/product/edit/@Model.ProductID" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="ProductID" value="@Model.ProductID" />
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label for="ProductName">Product Name</label>
+                <input type="text" class="form-control" id="ProductName" name="ProductName" value="@Model.ProductName" placeholder="Product Name" />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label for="Price">Price</label>
+                <input type="number" class="form-control" id="Price" name="Price" placeholder="Price" value="@((uint)Model.Price.Value)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label for="BrandID">Brand Name</label>
+                <select class="form-control" name="BrandID" id="BrandID" aria-label=".form-select-lg example">
+                    <option value="@Model.BrandID" selected>@Model.Brand.BrandName</option>
+                    @foreach (var item in ViewBag.Brand)
+                    {
+                        <option value="@item.BrandID">@item.BrandName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label for="GenderID">Gender</label>
+                <select class="form-control" name="GenderID" id="GenderID" aria-label=".form-select-lg example">
+                    <option value="@Model.GenderID" selected>@Model.Gender.GenerName</option>
+                    @foreach (var item in ViewBag.Gender)
+                    {
+                        <option value="@item.GenderID">@item.GenerName</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label for="CategoryID">Category</label>
+                <select class="form-control" name="CategoryID" id="CategoryID" aria-label=".form-select-lg example">
+                    <option value="@Model.CategoryID" selected>@Model.Category.CategoryName</option>
+                    @foreach (var item in ViewBag.Category)
+                    {
+                        <option value="@item.CategoryID">@item.CategoryName</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label for="DateOfUpLoad">Upload Date</label>
+                <input type="date" class="form-control" id="DateOfUpLoad" name="DateOfUpLoad" value="@Model.DateOfUpload.Value.ToString("yyyy-MM-dd")" placeholder="DateOfUpLoad" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label for="Status">Status</label>
+                <select class="form-control" name="Status" id="Status" aria-label=".form-select-lg example">
+                    <option value="@Model.Status" selected>@Model.Status</option>
+                    <option value="InStock">InStock</option>
+                    <option value="OutStock">OutStock</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label for="ImageUrl">Choose Image</label>
+                <input type="file" class="form-control" name="ImageUpload" value="@Model.">
+            </div>
+        </div>
+        <div class="row">
+            <div class="mx-3 form-check">
+                <input class="form-check-input" type="checkbox" id="ShowOnIndex" name="ShowOnIndex" value="true" checked="@Model.ShowOnIndex" />
+                <label class="form-check-label" for="ShowOnIndex">Show on Index</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"> Update</i></button>
+        <a href="/admin/product/index" class="btn btn-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i> Cancel</a>
+    </form>
+</div>
+

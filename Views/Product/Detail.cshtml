@@ -1,0 +1,30 @@
+﻿@model HLTClothes.Models.Product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <img src="~/Images/@Model.ImageUrl" class="img-fluid" />
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="card border-0 mt-md-5 my-md-5">
+                <div class="card-header bg-dark text-center text-white">
+                    <h2>Product Information</h2>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title text-center">@Model.ProductName</h3>
+                    <p class="card-text fs-2">@Model.Price</p>
+                    <h4 class="text-muted">BRAND: @Model.Brand.BrandName</h4>
+                    <h4 class="text-muted">CATEGORY: @Model.Category.CategoryName</h4>
+                    <h4 class="text-muted">GENDER: @Model.Gender.GenerName</h4>
+                    <a href="/shoppingcart/addtocart/@Model.ProductID"><i class="fa fa-cart-plus fa-2x btn btn-dark " aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href=@Url.Action("index", "product") style="text-decoration:none"><i class="fa fa-home fa-3x text-dark" aria-hidden="true"></i></a>
+</div>
+

@@ -1,0 +1,66 @@
+﻿@model HLTClothes.Models.Product
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm("Create", "Product", new { area = "Admin"} ,FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @Html.LabelFor(row => row.ProductName, "Product Name")
+                @Html.TextBoxFor(row => row.ProductName, new { @class = "form-control", placeholder = "Product Name" })
+                @Html.ValidationMessageFor(row => row.ProductName)
+            </div>
+            <div class="col-md-6 col-sm-12">
+                @Html.LabelFor(row => row.Price, "Price")
+                @Html.TextBoxFor(row => row.Price, new { @class = "form-control", placeholder = "Price" })
+                @Html.ValidationMessageFor(row => row.Price)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @Html.LabelFor(row => row.BrandID, "Brand Name")
+                @Html.DropDownListFor(row => row.BrandID, new SelectList(ViewBag.Brand, "BrandID", "BrandName"), "Please select ...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(row => row.BrandID)
+            </div>
+            <div class="col-md-6 col-sm-12">
+                @Html.LabelFor(row => row.GenderID, "Gender")
+                @Html.DropDownListFor(row => row.GenderID, new SelectList(ViewBag.Gender, "GenderID", "GenerName"), "Please select ...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(row => row.GenderID)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @Html.LabelFor(row => row.CategoryID, "Category")
+                @Html.DropDownListFor(row => row.CategoryID, new SelectList(ViewBag.Category, "CategoryID", "CategoryName"), "Please select ...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(row => row.CategoryID)
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label for="DateOfUpLoad">Upload Date</label>
+                <input type="date" class="form-control" id="DateOfUpLoad" name="DateOfUpLoad" placeholder="DateOfUpLoad" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @Html.LabelFor(row => row.Status, "Status")
+                @Html.DropDownListFor(row => row.Status, new List<SelectListItem>() { new SelectListItem() { Text = "InStock", Value = "InStock" }, new SelectListItem() { Text = "OutStock", Value = "OutStock" } }, "Please select ...", new { @class = "form-control" })
+                
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label for="ImageUrl">Choose Image</label>
+                <input type="file" class="form-control" name="ImageUpload">
+            </div>
+        </div>
+        <div class="row">
+            <div class="mx-3 form-check">
+                <input class="form-check-input" type="checkbox" id="ShowOnIndex" name="ShowOnIndex" value="true" />
+                <label class="form-check-label" for="ShowOnIndex">Show on Index</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"> Create</i></button>
+        <a href="/admin/product/index" class="btn btn-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i> Cancel</a>
+    }
+    
+</div>
+

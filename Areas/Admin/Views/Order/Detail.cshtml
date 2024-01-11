@@ -1,0 +1,38 @@
+﻿@model List<HLTClothes.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2 class="text-center">Detail of Order: @ViewBag.ID</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            @using (Html.BeginForm("Done", "Order", new { area = "Admin" }, FormMethod.Post))
+            {
+                <table class="table">
+                    <tr>
+                        <th>Order Detail ID</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.DetailID</td>
+                            <td><img src="~/Images/@item.Product.ImageUrl" style="width:100px; height:100px" /></td>
+                            <td>@item.Price</td>
+                            <td>@item.QuantitySale</td>
+                        </tr>
+                    }
+                </table>
+                
+                <a href="/admin/order/index"><i class="fa fa-undo fa-2x btn btn-danger" aria-hidden="true"></i></a>
+
+            }
+
+        </div>
+    </div>
+</div>
+

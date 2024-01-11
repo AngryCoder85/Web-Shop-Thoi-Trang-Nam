@@ -1,0 +1,18 @@
+﻿@model HLTClothes.Models.Category
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container-fluid">
+@using (Html.BeginForm("Create", "Category", new { area = "Admin" }, FormMethod.Post))
+{
+    <div class="row-cols-auto w-50 mx-auto">
+        @Html.LabelFor(temp => temp.CategoryName)
+        @Html.TextBoxFor(temp => temp.CategoryName, new { @class = "form-control", placeholder = "Name ..." })
+    </div>
+    <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"> Update</i></button>
+    <a href="/admin/category/index" class="btn btn-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i> Cancel</a>
+}
+</div>
+

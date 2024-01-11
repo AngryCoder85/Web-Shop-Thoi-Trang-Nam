@@ -1,0 +1,39 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light">
+    <div class="container-fluid">
+        <a href="/admin/home" class="navbar-brand"><img src="~/Images/admin.png" style="width:50px; height:50px;" /></a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <div class="nav-item dropdown">
+                    <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">SHOP</a>
+                    <div class="dropdown-menu">
+                        <a href="/admin/product/index" class="dropdown-item">PRODUCTS</a>
+                        <a href="/admin/category/index" class="dropdown-item">CATEGORIES</a>
+                    </div>
+                </div>
+                <a href="/admin/home/aboutus" class="nav-item nav-link">ABOUT US</a>
+                <a href="/admin/user" class="nav-item nav-link">USERS</a>
+                <a href="/admin/order" class="nav-item nav-link">ORDERS</a>
+            </div>
+
+            <div class="navbar-nav">
+                <form class="d-flex" action="/admin/product/index">
+                    <div class="input-group">
+                        <input type="text" name="Search" class="form-control" placeholder="Find something ...">
+                        <button type="submit" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="#" class="nav-item nav-link fw-bold">@User.Identity.Name</a>
+                    <a href="/account/logout" class="nav-item nav-link">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</nav>

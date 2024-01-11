@@ -1,0 +1,52 @@
+﻿@model List<HLTClothes.Identity.AppUser>
+@{
+    ViewBag.Title = "Index";
+}
+<h2 class="text-center mb-4">Account Manage</h2>
+<div class="container-fluid" style="min-height:500px;">
+    <div class="row-cols-md-auto row-cols-sm-auto">
+        <table class="table w-100">
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Manage</th>
+            </tr>
+            @foreach(var item in Model)
+            {
+        <tr>
+            @if (item.UserName == "admin")
+            {
+                <td class="text-danger"><i class="fa fa-lock text-black" aria-hidden="true"></i> @item.UserName</td>
+            }
+            else
+            {
+                <td>@item.UserName</td>
+            }
+            <td>@item.Email</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.Address</td>
+            @if(item.UserName == "admin")
+             {
+                <td>
+                    <i class="fa fa-shield" aria-hidden="true"></i>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a href="/admin/user/edit/@item.Id"><i class="fa fa-pencil btn btn-secondary" aria-hidden="true"></i></a>
+                    <a href="/admin/user/delete/@item.Id"><i class="fa fa-trash btn btn-danger" aria-hidden="true"></i></a>
+                </td>
+            }
+        </tr>
+            }
+        </table>
+    </div>
+    <div class="row-cols-md-auto row-cols-sm-auto">
+        <a href="/admin/user/create" class="text-white btn btn-dark"><i class="fa fa-user-plus" aria-hidden="true"> New User</i></a>
+    </div>
+</div>
+
+

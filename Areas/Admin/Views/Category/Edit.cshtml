@@ -1,0 +1,18 @@
+﻿@model HLTClothes.Models.Category
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container-fluid">
+    <form action="/admin/category/edit/@Model.CategoryID" method="post">
+        <input type="hidden" name="@Model.CategoryID" value="@Model.CategoryID">
+        <div class="row-cols-auto w-50 mx-auto">
+            <label for="@Model.CategoryName">Category Name</label>
+            <input type="text" class="form-control" name="@Model.CategoryName" value="@Model.CategoryName" />
+        </div>
+        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"> Update</i></button>
+        <a href="/admin/category/index" class="btn btn-danger"><i class="fa fa-trash fa-2x" aria-hidden="true"></i> Cancel</a>
+    </form>
+</div>
+

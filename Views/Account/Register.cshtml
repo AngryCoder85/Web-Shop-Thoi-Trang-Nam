@@ -1,0 +1,47 @@
+﻿@model HLTClothes.ViewModel.Register
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2 class="text-center">Đăng ký tài khoản</h2>
+<div class="container" style="min-height:500px">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        <div class="row-cols-auto w-50 mx-auto">
+            @Html.LabelFor(temp => temp.Email)
+            @Html.TextBoxFor(temp => temp.Email, new { @class = "form-control", placeholder = "Email ..." })
+            @Html.ValidationMessageFor(temp => temp.Email)
+        </div>
+        <div class="row-cols-auto w-50 mx-auto">
+            @Html.LabelFor(temp => temp.Username)
+            @Html.TextBoxFor(temp => temp.Username, new { @class = "form-control", placeholder = "UserName..." })
+            @Html.ValidationMessageFor(temp => temp.Username)
+        </div>
+        <div class="row-cols-auto w-50 mx-auto">
+            @Html.LabelFor(temp => temp.Password)
+            @Html.PasswordFor(temp => temp.Password, new { @class = "form-control", placeholder = "Password..." })
+            @Html.ValidationMessageFor(temp => temp.Password)
+        </div>
+        <div class="row-cols-auto w-50 mx-auto">
+            @Html.LabelFor(temp => temp.ConfirmPassword)
+            @Html.PasswordFor(temp => temp.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password ..." })
+            @Html.ValidationMessageFor(temp => temp.ConfirmPassword)
+        </div>
+        <div class="row-cols-auto w-50 mx-auto">
+            @Html.LabelFor(temp => temp.Mobile)
+            @Html.TextBoxFor(temp => temp.Mobile, new { @class = "form-control", placeholder = "Mobile ..." })
+            @Html.ValidationMessageFor(temp => temp.Mobile)
+        </div>
+        <div class="row-cols-auto w-50 mx-auto">
+            @Html.LabelFor(temp => temp.Address)
+            @Html.TextBoxFor(temp => temp.Address, new { @class = "form-control", placeholder = "Address ..." })
+            @Html.ValidationMessageFor(temp => temp.Address)
+        </div>
+        <div class="row-cols-auto w-50 mx-auto text-center">
+            <button type="submit" class="btn btn-success mt-2"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i> Register</button>
+        </div>
+    }
+</div>
+
